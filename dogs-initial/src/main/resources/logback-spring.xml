@@ -10,7 +10,7 @@
     </appender>
 
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <File>/var/tmp/mylog.log</File>
+        <File>D:\Users\Github Repos\java-dogs-logging\var\tmp\mylog.log</File>
         <append>true</append>
         <encoder>
             <pattern>[%d{yyyy-MM-dd' 'HH:mm:ss.SSS}] [%C] [%t] [%L] [%-5p] %m%n</pattern>
@@ -19,7 +19,7 @@
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
 
             <!-- rollover daily -->
-            <fileNamePattern>/var/tmp/mylog.%d{yyyy-MM-dd HH}.%i.txt</fileNamePattern>
+            <fileNamePattern>D:\Users\Github Repos\java-dogs-logging\var\tmp\mylog.%d{yyyy-MM-dd HH}.%i.txt</fileNamePattern>
             <maxFileSize>15MB</maxFileSize>
 
             <!-- keep 30 days' worth of history -->
