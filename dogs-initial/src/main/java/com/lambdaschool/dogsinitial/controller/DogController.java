@@ -48,6 +48,7 @@ public class DogController
     @GetMapping(value = "/breeds/{breed}")
     public ResponseEntity<?> getDogBreeds (@PathVariable String breed)
     {
+        logger.trace("/dogs/breeeds/" + breed + " was accessed.");
         ArrayList<Dog> rtnDogs = DogsinitialApplication.ourDogList.
                 findDogs(d -> d.getBreed().toUpperCase().equals(breed.toUpperCase()));
         return new ResponseEntity<>(rtnDogs, HttpStatus.OK);
@@ -56,6 +57,7 @@ public class DogController
     // localhost:2019/dogs/dogtable
     @GetMapping(value = "/dogtable")
     public ModelAndView showDogTable(){
+        logger.info("/dogs/dogtable was accessed.");
         ModelAndView mav = new ModelAndView();
         mav.setViewName("dogs");
         mav.addObject("dogList", DogsinitialApplication.ourDogList.dogList);
