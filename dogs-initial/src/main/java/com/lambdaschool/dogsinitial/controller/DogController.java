@@ -3,6 +3,8 @@ package com.lambdaschool.dogsinitial.controller;
 import com.lambdaschool.dogsinitial.exception.ResourceNotFoundException;
 import com.lambdaschool.dogsinitial.model.Dog;
 import com.lambdaschool.dogsinitial.DogsinitialApplication;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,10 +19,14 @@ import java.util.ArrayList;
 @RequestMapping("/dogs")
 public class DogController
 {
+    private static final Logger logger = LoggerFactory.getLogger(DogController.class);
+    // final means we would never change it. we need this line in every file we might want a log from
+
     // localhost:8080/dogs/dogs
     @GetMapping(value = "/dogs")
     public ResponseEntity<?> getAllDogs()
     {
+        logger.info("/dogs/dogs accessed");
         return new ResponseEntity<>(DogsinitialApplication.ourDogList.dogList, HttpStatus.OK);
     }
 
@@ -28,6 +34,7 @@ public class DogController
     @GetMapping(value = "/{id}")
     public ResponseEntity<?> getDogDetail(@PathVariable long id)
     {
+        logger.trace("/dogs/" + id + " was accessed");
         Dog rtnDog;
         if(DogsinitialApplication.ourDogList.findDog(d -> (d.getId() == id))== null){
             throw new ResourceNotFoundException("The dog with the id "+ id + " does not exist");
